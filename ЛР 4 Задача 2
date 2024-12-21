@@ -1,0 +1,27 @@
+import csv
+import json
+
+def csv_to_json(csv_file_path, json_file_path):
+
+    json_data = []
+
+    # открытие CSV-файла.
+    with open(csv_file_path, mode='r', newline='', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+
+        # Преобразование каждой строки в словарь.
+        for row in reader:
+            json_data.append(row)
+
+    # Запись данных в JSON-формате в файл.
+    with open(json_file_path, mode='w', encoding='utf-8') as jsonfile:
+        json.dump(json_data, jsonfile, indent=4)
+
+    # печаем JSON-данные на экран.
+    print(json.dumps(json_data, indent=4))
+
+csv_file_path = 'input.csv'
+json_file_path = 'output.json'
+
+# Преобразование данных CSV в JSON.
+csv_to_json(csv_file_path, json_file_path)
